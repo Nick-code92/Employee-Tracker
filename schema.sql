@@ -1,7 +1,5 @@
 DROP DATABASE IF EXISTS roster_db;
-
 CREATE DATABASE roster_db;
-
 USE roster_db;
 
 CREATE TABLE department (
