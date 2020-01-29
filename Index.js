@@ -222,17 +222,17 @@ const updateEmployeeQs = async () => {
         },
         {
             message: "What would you like to update?",
-            name: "userchoice",
+            name: "userChoice",
             type: "list",
             choices: ["Department", "Role"]
         },
     ]).then((response) => {
         let prevData = response
-        if (response.userchoice === "Department") {
+        if (response.userChoice === "Department") {
             inquirer.prompt([
                 {
-                    message: "What department would you like to assign?",
-                    name: "newdepartment",
+                    message: "What department would you like to be assigned too?",
+                    name: "newDepartment",
                     type: "list",
                     choices: deptArray
                 }
@@ -242,8 +242,8 @@ const updateEmployeeQs = async () => {
         } else {
             inquirer.prompt([
                 {
-                    message: "What role would you like to assign?",
-                    name: "newrole",
+                    message: "What role would you like to be assigned?",
+                    name: "newRole",
                     type: "list",
                     choices: roleArray
                 }
@@ -253,11 +253,9 @@ const updateEmployeeQs = async () => {
         }
 
     })
-    // function to call list of inquirer questions to update employee
 }
 
 const viewDepartments = () => {
-    // function to view a list of all departments
     connection.query("SELECT * FROM department", (err, results) => {
         if (err) throw err;
         console.log(`Current Department Listing:`)
@@ -269,7 +267,6 @@ const viewDepartments = () => {
 }
 
 const viewRoles = () => {
-    // funcion to view a list of all roles
     connection.query("SELECT * FROM role", (err, results) => {
         if (err) throw err;
         console.log(`Current Role Listing By Department:\n`)
@@ -291,13 +288,12 @@ const viewEmployees = () => {
         console.log(`\n`)
         menuReturn();
     })
-    // function to view a list of all employees
 }
 
 const menuReturn = () => {
     inquirer.prompt([
         {
-            message: "Would you like to Return to Menu or Exit?",
+            message: "Would you like to Return to the Menu or Exit?",
             name: "menu",
             type: "list",
             choices: ["Return to Menu", "Exit"]
@@ -319,12 +315,12 @@ const mainMenu = () => {
     inquirer.prompt([
         {
             message: "Please choose from the following options:",
-            name: "userchoice",
-            type: "rawlist",
+            name: "userChoice",
+            type: "rawList",
             choices: ["View departments breakdown", "View role breakdown", "View employee breakdown", "Add a department", "Add a role", "Add an employee", "Update an employee", "Exit"]
         }
     ]).then(answers => {
-        switch (answers.userchoice) {
+        switch (answers.userChoice) {
             case "View departments breakdown":
                 viewDepartments();
                 break;
@@ -354,7 +350,6 @@ const mainMenu = () => {
         }
     })
 }
-
 connection.connect((err) => {
     if (err) throw err;
     console.log(`Now connected as id ${connection.threadId}`)
