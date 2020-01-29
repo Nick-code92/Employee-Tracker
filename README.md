@@ -8,7 +8,7 @@ Building a command-line application that at a minimum allows the user to:
   * Update employee roles
 
   [check it out](https://github.com/Nick-code92/Employee-Tracker)
-  [Gif](Employee-tracker.gif)
+  [!Gif](Employee-tracker.gif)
 
 ### Built with
 * node  
