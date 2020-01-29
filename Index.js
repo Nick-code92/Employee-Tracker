@@ -128,21 +128,20 @@ const addRole = (data) => {
 }
 
 const addRoleQs = async () => {
-    // function to call up list of inquirer questions to add role - COMPLETE
     let deptArray = await generateDepts();
     inquirer.prompt([
         {
-            message: "Which department would you like to add a role to?",
+            message: "Which department would you like to add a role too?",
             name: "department",
             type: "list",
             choices: deptArray,
         },
         {
-            message: "What role would you like to add?",
+            message: "What role would you like to add to?",
             name: "title"
         },
         {
-            message: "What salary would you like to attach to this role?",
+            message: "What salary would you like to be attach to this role?",
             name: "salary"
 
         }
@@ -152,7 +151,6 @@ const addRoleQs = async () => {
 }
 
 const addEmployee = async (data) => {
-    // function to add new employee
     console.log(data)
     let dept_id = await generateDeptID(data)
     let role_id = await generateRoleID(data)
@@ -164,28 +162,27 @@ const addEmployee = async (data) => {
 }
 
 const addEmployeeQs = async () => {
-    // function to call of list of inquirer questions to add employee - COMPLETE
     let deptArray = await generateDepts()
     let roleArray = await generateRoles()
     inquirer.prompt([
         {
-            message: "Into which department would you like to add this employee?",
+            message: "Into which department would you like to add this employee to?",
             name: "department",
             type: "list",
             choices: deptArray
         },
         {
-            message: "What is this employee's role?",
+            message: "What is this employee's role in this department?",
             name: "role",
             type: "list",
             choices: roleArray
         },
         {
-            message: "Please provide employee's first name.",
+            message: "Please provided employee's first name.",
             name: "first_name"
         },
         {
-            message: "Please provide employee's last name.",
+            message: "Please provided employee's last name.",
             name: "last_name"
         }
     ]).then((response) => {
@@ -193,19 +190,18 @@ const addEmployeeQs = async () => {
     })
 }
 
-const updateEmployee = ((data, prevData) => {
-    // function to update an employee    
+const updateEmployee = ((data, prevData) => {  
     const name = prevData.employee.split(' ')
     const first_name = name[0]
     const last_name = name[1]
-    if (!data.newrole) {
-        connection.query("UPDATE employee SET department = ? WHERE first_name = ? AND last_name = ?", [data.newdepartment, first_name, last_name], (err, results) => {
+    if (!data.newRole) {
+        connection.query("UPDATE employee SET department = ? WHERE first_name = ? AND last_name = ?", [data.newDepartment, first_name, last_name], (err, results) => {
             if (err) throw err;
             console.log(`\nSuccessfully updated ${prevData.employee}.\n`)
             menuReturn();
         })
-    } else if (!data.newdepartment) {
-        connection.query("UPDATE employee SET role = ? WHERE first_name = ? AND last_name = ?", [data.newrole, first_name, last_name], (err, results) => {
+    } else if (!data.newDepartment) {
+        connection.query("UPDATE employee SET role = ? WHERE first_name = ? AND last_name = ?", [data.newRole, first_name, last_name], (err, results) => {
             if (err) throw err;
             console.log(`\nSuccessfully updated ${prevData.employee}.\n`)
             menuReturn();
