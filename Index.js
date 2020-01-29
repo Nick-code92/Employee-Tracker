@@ -15,7 +15,6 @@ const generateEmployees = () => {
             if (err) {
                 return reject(err)
             };
-
             for (const result of results) {
                 employeeArray.push(result.first_name + " " + result.last_name)
             }
@@ -92,7 +91,6 @@ const generateRoleID = (data) => {
     })
 }
 const addDepartment = (data) => {
-    // function to add new department - COMPLETE
     console.log(data)
     connection.query(`INSERT INTO department(name) VALUES (?)`, [data.newdept], (err, results) => {
         if (err) throw err;
@@ -102,12 +100,10 @@ const addDepartment = (data) => {
 }
 
 const addDepartmentQs = () => {
-    // function to call up list of inquirer questions to add department - COMPLETE
-
     inquirer.prompt([
         {
-            message: "What department would you like to add?",
-            name: "newdept"
+            message: "What department would you like to be add to?",
+            name: "newDepartment"
         },
     ]).then(function (response) {
         addDepartment(response)
@@ -115,12 +111,11 @@ const addDepartmentQs = () => {
 }
 
 const addRole = (data) => {
-    // function to add new role - COMPLETE
     let deptID
     connection.query("SELECT * FROM department", (err, results) => {
         if (err) throw err;
         for (const result of results) {
-            if (result.name === data.whichdept) {
+            if (result.name === data.whichDepartment) {
                 deptID = result.id
             }
         }
