@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS roster_db;
-CREATE DATABASE roster_db;
-USE roster_db;
+DROP DATABASE IF EXISTS employees_db;
+CREATE DATABASE employees_db;
+USE employees_db;
 
 CREATE TABLE department (
 	id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
